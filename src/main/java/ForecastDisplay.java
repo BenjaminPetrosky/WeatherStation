@@ -1,7 +1,7 @@
 public class ForecastDisplay implements Observer, DisplayElement{
-    private float temperature;
-    private float humidity;
-    private float pressure;
+
+    private float oldPressure;
+    private float newPressure;
     private WeatherData weatherData;
 
     public ForecastDisplay(WeatherData weatherData){
@@ -10,14 +10,22 @@ public class ForecastDisplay implements Observer, DisplayElement{
     }
     @Override
     public void display() {
-        System.out.println("Heres a message for ForecastDisplay");
+        if(oldPressure < newPressure){
+            System.out.println("Forecast:  Improving weather on the way!");
+
+        }else if(oldPressure > newPressure){
+            System.out.println("Forecast:  WATCH OUT FOR COOLER RAINYWEATHER;");
+        }else{
+            System.out.println("Forecast:  More of the same");
+        }
+
     }
 
     @Override
     public void update(float temp, float humidity, float pressure) {
-        this.temperature = temp;
-        this.humidity = humidity;
-        this.pressure = pressure;
+
+        this.oldPressure = this.newPressure;
+        this.newPressure = pressure;
         display();
     }
 }
