@@ -1,24 +1,34 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class StatisticsDisplay implements Observer, DisplayElement{
     private float temperature;
     private float pressure;
     private float humidity;
+    private List<Float> allTemps;
 
     private WeatherData weatherData;
 
     public StatisticsDisplay(WeatherData weatherData){
+        this.allTemps = new ArrayList<Float>();
         this.weatherData = weatherData;
         weatherData.registerObserver(this);
     }
     @Override
     public void display() {
-        System.out.println("Display something about stats");
+        float sum = 0.0F;
+        for(int i = 0; i < allTemps.size(); i++){
+            sum += allTemps.get(i);
+        }
+        float average = sum / allTemps.size();
+        System.out.println("Avg/Max/Min temperature = " + average + "/" + Collections.max(allTemps) + "/" + Collections.min(allTemps));
     }
 
     @Override
     public void update(float temp, float humidity, float pressure) {
         this.temperature = temp;
-        this.humidity = humidity;
-        this.pressure = pressure;
+        allTemps.add(temp);
         display();
     }
 }
