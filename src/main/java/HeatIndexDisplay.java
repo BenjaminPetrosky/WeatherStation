@@ -1,4 +1,13 @@
-public class HeatIndexDisplay {
+public class HeatIndexDisplay implements Observer, DisplayElement{
+
+    private float humidity;
+    private float temperature;
+    private WeatherData weatherData;
+
+    public HeatIndexDisplay(WeatherData weatherData){
+        this.weatherData = weatherData;
+        weatherData.registerObserver(this);
+    }
 
     private float computeHeatIndex(float t, float rh) {
         float index = (float)((16.923 + (0.185212 * t) + (5.37941 * rh) - (0.100254 * t * rh) +
@@ -12,4 +21,16 @@ public class HeatIndexDisplay {
         return index;
     }
 
+    @Override
+    public void display() {
+        System.out.println("Heat index is " + computeHeatIndex(temperature, humidity));
+
+    }
+
+    @Override
+    public void update(float temp, float humidity, float pressure) {
+        this.humidity = humidity;
+        this.temperature = temp;
+        display();
+    }
 }
