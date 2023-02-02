@@ -4,7 +4,6 @@ import java.util.List;
 
 public class StatisticsDisplay implements Observer, DisplayElement{
     private List<Float> allTemps;
-
     private WeatherData weatherData;
 
     public StatisticsDisplay(WeatherData weatherData){
@@ -21,7 +20,6 @@ public class StatisticsDisplay implements Observer, DisplayElement{
         float average = sum / allTemps.size();
         System.out.println("Avg/Max/Min temperature = " + average + "/" + Collections.max(allTemps) + "/" + Collections.min(allTemps));
     }
-
     @Override
     public void update() {
         allTemps.add(weatherData.getTemperature());
