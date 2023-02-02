@@ -18,8 +18,5 @@ public class WeatherStation {
 		weatherData.removeObserver(forecastDisplay);
 		//weatherData.setMeasurements(62, 90, 28.1f);
 
-		// IMPROVING WEATHER ON THE WAY!
-		// WATCH OUT FOR COOLER RAINYWEATHER;
-		// MORE OF THE SAME
 	}
 }
