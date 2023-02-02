@@ -3,9 +3,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class StatisticsDisplay implements Observer, DisplayElement{
-    private float temperature;
-    private float pressure;
-    private float humidity;
     private List<Float> allTemps;
 
     private WeatherData weatherData;
